@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tote-ally Yours | Cute Bags, Happy Days</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="header">
+    <a href="#" class="logo" aria-label="Tote-ally Yours home">
+      Tote-ally Yours
+      <small>CUTE BAGS • HAPPY DAYS</small>
+    </a>
+
+    <form class="search" id="searchForm">
+      <span aria-hidden="true">⌕</span>
+      <input id="searchInput" type="search" placeholder="Search your favorite tote..." aria-label="Search tote bags">
+      <button type="submit">Search</button>
+    </form>
+
+    <div class="header-actions">
+      <button id="headerWishlist" type="button" aria-label="Open wishlist">♡</button>
+      <button id="headerCart" type="button" aria-label="Open shopping bag">
+        ♧ <span id="headerCartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <span class="flower flower-left" aria-hidden="true">✿</span>
+      <span class="flower flower-right" aria-hidden="true">✿</span>
+
+      <div class="hero-copy">
+        <p class="eyebrow">A LITTLE BAG FULL OF HAPPINESS</p>
+        <h1>Carry a little<br><em>happiness.</em></h1>
+        <p>Find your everyday tote, made for lovely little moments.</p>
+        <a class="hero-button" href="#shop">Shop the collection ♡</a>
+      </div>
+
+      <div class="hero-art" aria-hidden="true">
+        <div class="art-tote">✿<br>♡</div>
+        <div class="art-tote quote">little<br>things<br>matter</div>
+        <div class="art-tote checks"></div>
+      </div>
+    </section>
+
+    <section class="section" id="categories">
+      <div class="section-heading">
+        <div>
+          <h2>Shop by Category</h2>
+          <p>Find the tote that feels like you.</p>
+        </div>
+      </div>
+
+      <div class="categories">
+        <button class="category active" type="button" data-category="All">All Totes</button>
+        <button class="category" type="button" data-category="Floral">Floral</button>
+        <button class="category" type="button" data-category="Gingham">Gingham</button>
+        <button class="category" type="button" data-category="Botanical">Botanical</button>
+        <button class="category" type="button" data-category="Illustrated">Illustrated</button>
+        <button class="category" type="button" data-category="Retro">Retro</button>
+      </div>
+    </section>
+
+    <section class="section" id="shop">
+      <div class="section-heading">
+        <div>
+          <h2 id="productHeading">Featured Totes</h2>
+          <p id="resultCount">8 lovely tote designs</p>
+        </div>
+        <select id="sortSelect" aria-label="Sort products">
+          <option value="featured">Featured</option>
+          <option value="price-low">Price: Low to High</option>
+          <option value="price-high">Price: High to Low</option>
+          <option value="name">Name: A to Z</option>
+        </select>
+      </div>
+
+      <div class="products" id="productGrid"></div>
+
+      <div class="empty hidden" id="emptyState">
+        <h3>No totes found ♡</h3>
+        <p>Try another category or search term.</p>
+        <button id="resetFilters" type="button">Show All Totes</button>
+      </div>
+    </section>
+
+    <section class="note">
+      <strong>Made for your everyday</strong>
+      <span>Lovely designs, thoughtful details, and a little happiness in every bag.</span>
+    </section>
+  </main>
+
+  <footer>
+    <strong>Tote-ally Yours</strong>
+    <p>Cute bags • Happy days</p>
+    <small>© <span id="year"></span> Tote-ally Yours. All rights reserved.</small>
+  </footer>
+
+  <nav class="bottom-nav" aria-label="Main navigation">
+    <button class="nav-item active" type="button" data-page="home">
+      <span>⌂</span>Home
+    </button>
+    <button class="nav-item" type="button" data-page="categories">
+      <span>▦</span>Categories
+    </button>
+    <button class="nav-item" type="button" data-page="wishlist">
+      <span>♡</span>Wishlist
+      <span class="badge hidden" id="wishlistCount">0</span>
+    </button>
+    <button class="nav-item" type="button" data-page="cart">
+      <span>♧</span>Bag
+      <span class="badge hidden" id="bottomCartCount">0</span>
+    </button>
+  </nav>
+
+  <div class="overlay hidden" id="cartOverlay">
+    <aside class="drawer" role="dialog" aria-modal="true" aria-labelledby="cartTitle">
+      <div class="drawer-heading">
+        <div>
+          <small>YOUR LITTLE FINDS</small>
+          <h2 id="cartTitle">Your Shopping Bag ♡</h2>
+        </div>
+        <button class="close" id="closeCart" type="button" aria-label="Close shopping bag">×</button>
+      </div>
+
+      <div class="cart-empty" id="cartEmpty">
+        <span>♧</span>
+        <h3>Your bag is waiting!</h3>
+        <p>Add a tote you love and it will appear here.</p>
+        <button id="continueShopping" type="button">Continue Shopping</button>
+      </div>
+
+      <div id="cartItems"></div>
+
+      <div id="cartSummary" class="hidden">
+        <label for="couponInput">Have a coupon?</label>
+        <div class="coupon">
+          <input id="couponInput" type="text" placeholder="Enter coupon code">
+          <button id="applyCoupon" type="button">Apply</button>
+        </div>
+        <p id="couponMessage"></p>
+
+        <div class="summary-line">
+          <span>Subtotal</span><strong id="subtotalValue">₱0.00</strong>
+        </div>
+        <div class="summary-line">
+          <span>Discount</span><strong id="discountValue">−₱0.00</strong>
+        </div>
+        <div class="summary-line">
+          <span>Shipping</span><strong id="shippingValue">FREE</strong>
+        </div>
+        <p id="shippingNote"></p>
+        <div class="summary-line total">
+          <span>Total</span><strong id="totalValue">₱0.00</strong>
+        </div>
+        <button class="checkout-button" id="checkoutButton" type="button">Proceed to Checkout</button>
+      </div>
+    </aside>
+  </div>
+
+  <div class="overlay hidden" id="checkoutOverlay">
+    <section class="checkout-modal" role="dialog" aria-modal="true" aria-labelledby="checkoutTitle">
+      <button class="close" id="closeCheckout" type="button" aria-label="Close checkout">×</button>
+      <span class="modal-flower" aria-hidden="true">✿</span>
+      <h2 id="checkoutTitle">Almost Yours!</h2>
+      <p>This is a demo checkout form for your website project.</p>
+
+      <form id="checkoutForm">
+        <label for="customerName">Full Name</label>
+        <input id="customerName" name="customerName" type="text" required>
+
+        <label for="customerEmail">Email Address</label>
+        <input id="customerEmail" name="customerEmail" type="email" required>
+
+        <label for="customerAddress">Delivery Address</label>
+        <textarea id="customerAddress" name="customerAddress" rows="3" required></textarea>
+
+        <button class="checkout-button" type="submit">Place Demo Order</button>
+      </form>
+    </section>
+  </div>
+
+  <div class="toast hidden" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
